@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- setter注入，要求属性必须有get和set方法 -->
+	<bean id="testStudent" class="com.eec.entity.Student">
+		<property name="name" value="董世民"></property>
+		<property name="age" value="14"></property>
+		<property name="school" value="安徽科技学院"></property>
+	</bean>
+
+	<!-- 构造器注入 -->
+	<bean id="testStudent1" class="com.eec.entity.Student">
+		<constructor-arg>
+			<value type="java.lang.String">舒家峰</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value type="int">16</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value type="java.lang.String">安徽科技学院</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 工厂静态方法注入 -->
+	<bean id="testStudent2" class="com.eec.util.StuFactory" factory-method="getStu"></bean>
+
+	<!-- 工厂非静态方法注入 -->
+	<bean id="testStudent3" class="com.eec.util.StuFactory"></bean>
+	<bean id="jiafeng" factory-bean="testStudent3" factory-method="getStuOne"></bean>
+	
+</beans>
